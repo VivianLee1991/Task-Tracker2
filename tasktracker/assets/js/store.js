@@ -25,6 +25,7 @@ let empty_form = {
   title: "",
   description: "",
   worker_id: "",
+  token: "",
 };
 
 function form(state = empty_form, action) {
@@ -33,13 +34,38 @@ function form(state = empty_form, action) {
       return Object.assign({}, state, action.data);
     case 'CLEAR_FORM':
       return empty_form;
+    case 'SET_TOKEN':
+      return Object.assign({}, state, action.token);
+    default:
+      return state;
+  }
+}
+
+function token(state = null, action) {
+  switch (action.type) {
+    case 'SET_TOKEN':
+      return action.token;
+    default:
+      return state;
+  }
+}
+
+let empty_login = {
+  name: "",
+  pass: "",
+};
+
+function login(state = empty_login, action) {
+  switch (action.type) {
+    case 'UPDATE_LOGIN_FORM':
+      return Object.assign({}, state, action.data);
     default:
       return state;
   }
 }
 
 function root_reducer(state0, action) {
-  let reducer = combineReducers({tasks, users, form});
+  let reducer = combineReducers({tasks, users, form, token, login});
   let state1 = reducer(state0, action);
   return deepFreeze(state1);
 }

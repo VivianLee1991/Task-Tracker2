@@ -28,5 +28,6 @@ defmodule TasktrackerWeb.Router do
 
     resources "/users", UserController, except: [:new, :edit]
     resources "/tasks", TaskController, except: [:new, :edit]
+    post "/token", TokenController, :create
   end
 end
