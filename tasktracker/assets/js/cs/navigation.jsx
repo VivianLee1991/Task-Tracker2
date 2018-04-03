@@ -23,8 +23,8 @@ let LoginForm = connect( ({login}) => {return {login};} )( (props) => {
     <div className="navbar-text">
       <Form inline>
         <FormGroup>
-          <Input type="text" name="name" placeholder="name"
-                 value={props.login.name} onChange={update} />
+          <Input type="email" name="email" placeholder="user@email.com"
+                 value={props.login.email} onChange={update} />
         </FormGroup>
         <FormGroup>
           <Input type="password" name="pass" placeholder="password"

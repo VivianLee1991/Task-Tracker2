@@ -19,6 +19,7 @@ function TaskForm(props) {
 
   function submit(ev) {
     api.submit_task(props.form);
+    console.log(props.form);
   }
 
   function clear(ev) {
@@ -31,7 +32,7 @@ function TaskForm(props) {
   return (
     <div style={{padding: "4ex"}}>
       <h2>New Task</h2>
-      
+
       <FormGroup>
         <Label for="title">Title</Label>
         <Input type="textarea" name="title" value={props.form.title} onChange={update} />

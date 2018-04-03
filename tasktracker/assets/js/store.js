@@ -1,6 +1,27 @@
 import { createStore, combineReducers } from 'redux';
 import deepFreeze from 'deep-freeze';
 
+/*
+app's state {
+  tasks: []
+  users: []
+  form: {
+    title: ""
+    description: ""
+    worker_id: ""
+    token: ""
+  }
+  token: {
+    user_id:
+    user_name:
+    token:
+  }
+  login: {
+    name:
+    pass:
+  }
+}
+*/
 function tasks(state = [], action) {
   switch(action.type) {
     case 'TASKS_LIST':
@@ -31,7 +52,7 @@ let empty_form = {
 function form(state = empty_form, action) {
   switch (action.type) {
     case 'UPDATE_FORM':
-      return Object.assign({}, state, action.data);
+      return Object.assign({}, state, action.data); // merge objects
     case 'CLEAR_FORM':
       return empty_form;
     case 'SET_TOKEN':
