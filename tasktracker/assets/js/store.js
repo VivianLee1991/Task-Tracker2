@@ -9,7 +9,6 @@ app's state {
     title: ""
     description: ""
     worker_id: ""
-    token: ""
   }
   token: {
     user_id:
@@ -19,6 +18,12 @@ app's state {
   login: {
     name:
     pass:
+  }
+  register: {
+    name:
+    email:
+    password1:
+    password2:
   }
 }
 */
@@ -46,7 +51,6 @@ let empty_form = {
   title: "",
   description: "",
   worker_id: "",
-  token: "",
 };
 
 function form(state = empty_form, action) {
@@ -79,6 +83,22 @@ let empty_login = {
 function login(state = empty_login, action) {
   switch (action.type) {
     case 'UPDATE_LOGIN_FORM':
+      return Object.assign({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+let empty_register = {
+  name: "",
+  email: "",
+  password1: "",
+  password2: "",
+};
+
+function register(state = empty_register, action) {
+  switch (action.type) {
+    case 'REGISTER':
       return Object.assign({}, state, action.data);
     default:
       return state;

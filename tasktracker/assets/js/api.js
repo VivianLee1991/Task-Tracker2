@@ -42,6 +42,9 @@ class TheServer {
         });
         console.log("Posted");
       },
+      error: (resp) => {
+        console.log(resp);
+      }
     });
   }
 

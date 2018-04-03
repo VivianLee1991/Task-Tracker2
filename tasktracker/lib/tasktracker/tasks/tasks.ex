@@ -59,7 +59,7 @@ defmodule Tasktracker.Tasks do
     {:ok, task} = %Task{}
     |> Task.changeset(attrs)
     |> Repo.insert()
-    {:ok, Repo.preload(task, :designer, :worker)}
+    {:ok, task |> Repo.preload(:designer) |> Repo.preload(:worker)}
   end
 
   @doc """

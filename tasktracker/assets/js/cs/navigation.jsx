@@ -54,7 +54,7 @@ function Navigation(props) {
   }
 
   return (
-    <nav className="navbar navbar-dark bg-dark navbar-expand">
+    <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
       <span className="navbar-brand">
         TaskTracker
       </span>
@@ -62,6 +62,11 @@ function Navigation(props) {
       <ul className="navbar-nav mr-auto">
         <NavItem>
           <NavLink to="/" exact={true} activeClassName="active" className="nav-link">
+            Register
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/home" activeClassName="active" className="nav-link">
             Home
           </NavLink>
         </NavItem>

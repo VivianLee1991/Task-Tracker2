@@ -8,6 +8,7 @@ import Users from './users';
 import Tasks from './tasks';
 import TaskForm from './taskform';
 import Home from './home';
+import Register from './register';
 
 export default function tasktracker_init(store) {
   let root = document.getElementById('root');
@@ -24,9 +25,14 @@ let Tasktracker = connect((state) => state)((props) => {
   console.log(props.token);
   return (
     <Router>
-      <div>
+      <div class="container">
         <Navigation />
         <Route path="/" exact={true} render={ () =>
+          <div>
+            Register an Account
+          </div>
+        } />
+        <Route path="/home" exact={true} render={ () =>
           <div>
             <TaskForm />
             <Home tasks={props.tasks} user={props.token}/>
