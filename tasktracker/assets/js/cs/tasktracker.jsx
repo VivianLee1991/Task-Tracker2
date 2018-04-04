@@ -28,9 +28,7 @@ let Tasktracker = connect((state) => state)((props) => {
       <div class="container">
         <Navigation />
         <Route path="/" exact={true} render={ () =>
-          <div>
-            Register an Account
-          </div>
+          <Register />
         } />
         <Route path="/home" exact={true} render={ () =>
           <div>

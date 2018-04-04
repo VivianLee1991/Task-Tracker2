@@ -60,7 +60,40 @@ class TheServer {
           token: resp,
         });
       },
+      error: (msg) => {
+        store.dispatch({
+          type: 'LOGIN_ERROR',
+          msg: msg,
+        });
+      },
     });
+  }
+
+  submit_register(data) {
+    let pass1 = data.password1;
+    let pass2 = data.password2;
+
+    if (pass1 === pass2) {
+      $.ajax("/api/v1/users", {
+        method: "post",
+        dataType: "json",
+        contentType: "application/json; charset=UTF-8",
+        data: JSON.stringify({ user: {name: data.name, email: data.email, password: pass1, password_hash: ""} }),
+        success: (resp) => {
+          store.dispatch({
+            type: 'ADD_USER',
+            user: resp.data,
+          });
+        },
+        error: (resp) => {
+          console.log(resp);
+        }
+      });
+    } else {
+      // re-enter password
+      console.log("Re-enter password.");
+    }
+
   }
 }
 

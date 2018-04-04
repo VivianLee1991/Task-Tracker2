@@ -20,10 +20,13 @@ app's state {
     pass:
   }
   register: {
-    name:
+    username:
     email:
     password1:
     password2:
+  }
+  error: {
+    msg: String
   }
 }
 */
@@ -42,6 +45,8 @@ function users(state = [], action) {
   switch (action.type) {
     case 'USERS_LIST':
       return [...action.users];
+    case 'ADD_USER':
+      return [action.user, ...state];
     default:
       return state;
   }
@@ -89,6 +94,19 @@ function login(state = empty_login, action) {
   }
 }
 
+let empty_error = {
+  msg: "",
+};
+
+function error(state = empty_error, action) {
+  switch (action.type) {
+    case 'LOGIN_ERROR':
+      return Object.assign({}, state, action.msg);
+    default:
+      return state;
+  }
+}
+
 let empty_register = {
   name: "",
   email: "",
@@ -98,7 +116,7 @@ let empty_register = {
 
 function register(state = empty_register, action) {
   switch (action.type) {
-    case 'REGISTER':
+    case 'UPDATE_REGISTER_FORM':
       return Object.assign({}, state, action.data);
     default:
       return state;
@@ -106,7 +124,7 @@ function register(state = empty_register, action) {
 }
 
 function root_reducer(state0, action) {
-  let reducer = combineReducers({tasks, users, form, token, login});
+  let reducer = combineReducers({tasks, users, form, token, login, register, error});
   let state1 = reducer(state0, action);
   return deepFreeze(state1);
 }

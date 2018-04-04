@@ -4,8 +4,9 @@ import { NavItem, Form, FormGroup, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 
-let LoginForm = connect( ({login}) => {return {login};} )( (props) => {
+let LoginForm = connect(({login}) => {return {login};})((props) => { // connect: connect state to a component's props
   function update(ev) {
+    ev.preventDefault();
     let target = $(ev.target);
     let data = {};
     data[target.attr('name')] = target.val();
@@ -16,6 +17,7 @@ let LoginForm = connect( ({login}) => {return {login};} )( (props) => {
   }
 
   function create_token(ev) {
+    ev.preventDefault();
     api.submit_login(props.login);
   }
 
@@ -30,13 +32,13 @@ let LoginForm = connect( ({login}) => {return {login};} )( (props) => {
           <Input type="password" name="pass" placeholder="password"
                  value={props.login.pass} onChange={update} />
         </FormGroup>
-        <Button onClick={create_token}>Log In</Button>
+        <Button onClick={create_token} color="primary">Log In</Button>
       </Form>
     </div>
   );
 });
 
-let Session = connect(({token}) => {return {token};})((props) => {
+let Session = connect(({token}) => {return {token};})((props) => { // grab the token field from the state.
   return (
     <div className="navbar-text">
       Logged in as: { props.token.user_name }
