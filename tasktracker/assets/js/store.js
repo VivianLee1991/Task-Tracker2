@@ -105,6 +105,22 @@ function designer_form(state = empty_designer_form, action) {
   }
 }
 
+let empty_worker_form = {
+  time: "",
+  complete: "",
+};
+
+function worker_form(state = empty_worker_form, action) {
+  switch (action.type) {
+    case 'UPDATE_WORKER_FORM':
+      return Object.assign({}, state, action.data); // merge objects
+    case 'CLEAR_WORKER_FORM':
+      return empty_worker_form;
+    default:
+      return state;
+  }
+}
+
 function token(state = null, action) {
   switch (action.type) {
     case 'SET_TOKEN':
@@ -160,7 +176,7 @@ function register(state = empty_register, action) {
 }
 
 function root_reducer(state0, action) {
-  let reducer = combineReducers({tasks, users, form, token, login, register, error, designer_form});
+  let reducer = combineReducers({tasks, users, form, token, login, register, error, designer_form, worker_form});
   let state1 = reducer(state0, action);
   return deepFreeze(state1);
 }

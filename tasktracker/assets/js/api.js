@@ -49,7 +49,7 @@ class TheServer {
   }
 
   edit_task(data, task_id) {
-    $.ajax("/api/v1/tasks" + task_id, {
+    $.ajax("/api/v1/tasks/" + task_id, {
       method: "put",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -65,7 +65,7 @@ class TheServer {
   }
 
   delete_task(task_id) {
-    $.ajax("/api/v1/tasks" + task_id, {
+    $.ajax("/api/v1/tasks/" + task_id, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",

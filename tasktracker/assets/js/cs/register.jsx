@@ -21,7 +21,8 @@ function Register(props) {
   }
 
   return (
-    <div class="center-block">
+    <div className="center-block" style={{padding: "4ex"}}>
+      <h2>Register New Account</h2>
       <FormGroup>
         <Label for="name">Username:</Label>
         <Input type="text" name="name" placeholder="username" value={props.register.name} onChange={updateRegister} />

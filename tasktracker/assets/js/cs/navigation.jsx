@@ -6,7 +6,7 @@ import api from '../api';
 
 let LoginForm = connect(({login}) => {return {login};})((props) => { // connect: connect state to a component's props
   function update(ev) {
-    ev.preventDefault();
+    //ev.preventDefault();
     let target = $(ev.target);
     let data = {};
     data[target.attr('name')] = target.val();
@@ -17,7 +17,7 @@ let LoginForm = connect(({login}) => {return {login};})((props) => { // connect:
   }
 
   function create_token(ev) {
-    ev.preventDefault();
+    //ev.preventDefault();
     api.submit_login(props.login);
   }
 
@@ -75,7 +75,7 @@ function Navigation(props) {
         </NavItem>
 
         <NavItem>
-          <NavLink to="/tasks" activeClassName="active" className="nav-link">
+          <NavLink to="/tasks" href="#" className="nav-link">
             My Tasks
           </NavLink>
         </NavItem>

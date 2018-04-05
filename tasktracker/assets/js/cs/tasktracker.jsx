@@ -9,7 +9,9 @@ import Tasks from './tasks';
 import TaskForm from './taskform';
 import Home from './home';
 import Register from './register';
+import DesignerTasks from './designer-tasks';
 import DesignerTaskForm from './designer-taskform';
+import WorkerTasks from './worker-tasks';
 import WorkerTaskForm from './worker-taskform';
 
 export default function tasktracker_init(store) {
@@ -24,10 +26,10 @@ export default function tasktracker_init(store) {
 }
 
 let Tasktracker = connect((state) => state)((props) => {
-  console.log(props.token);
+
   return (
     <Router>
-      <div class="container">
+      <div>
         <Navigation />
 
         <Route path="/" exact={true} render={ () =>
@@ -37,18 +39,23 @@ let Tasktracker = connect((state) => state)((props) => {
         <Route path="/home" exact={true} render={ () =>
           <div>
             <TaskForm />
-            <h2>All Tasks</h2>
-            <Home tasks={props.tasks} user={props.token}/>
+            <Home tasks={props.tasks} />
           </div>
         } />
 
         <Route path="/tasks" exact={true} render={ () =>
           <div>
-            <h3>Tasks Designed</h3>
-            <DesignerTaskForm />
-            <h3>Tasks To Do</h3>
-            <WorkerTaskForm />
+            <DesignerTasks tasks={props.tasks} token={props.token} />
+            <WorkerTasks tasks={props.tasks} token={props.token} />
           </div>
+        } />
+
+        <Route path="/tasks/:task_id" exact={true} render={ ({match}) =>
+          <DesignerTaskForm task_id={match.params.task_id} />
+        } />
+
+        <Route path="/tasks/:task_id/working" exact={true} render={ ({match}) =>
+          <WorkerTaskForm task_id={match.params.task_id} />
         } />
 
         <Route path="/users" exact={true} render={ () =>

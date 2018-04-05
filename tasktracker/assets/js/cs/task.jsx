@@ -5,7 +5,7 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 export default function Task(params) {
   let task = params.task;
   return (
-    <div>
+    <div style={{padding: "1ex"}}>
       <Card>
         <CardBody>
           <CardTitle>{ task.title }</CardTitle>

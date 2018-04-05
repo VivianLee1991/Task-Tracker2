@@ -3,16 +3,12 @@ import Task from './task';
 
 
 export default function Home(params) {
-  let user_id = 0;
-  if (params.token) {
-    user_id = params.token.user_id;  // current user
-  }
-
   let tasks = _.map(params.tasks, (tt) =>
-    (<Task key={tt.id} task={tt} />));
+    <Task key={tt.id} task={tt} />);
 
   return (
-    <div>
+    <div style={{padding: "4ex"}}>
+      <h2>All Tasks</h2>
       { tasks }
     </div>
   );
