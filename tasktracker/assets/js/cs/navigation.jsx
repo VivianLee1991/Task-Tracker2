@@ -27,11 +27,11 @@ let LoginForm = connect(({login}) => {return {login};})((props) => { // connect:
         <FormGroup>
           <Input type="email" name="email" placeholder="user@email.com"
                  value={props.login.email} onChange={update} />
-        </FormGroup>
+        </FormGroup> &nbsp;
         <FormGroup>
           <Input type="password" name="pass" placeholder="password"
                  value={props.login.pass} onChange={update} />
-        </FormGroup>
+        </FormGroup> &nbsp;
         <Button onClick={create_token} color="primary">Log In</Button>
       </Form>
     </div>
@@ -41,7 +41,8 @@ let LoginForm = connect(({login}) => {return {login};})((props) => { // connect:
 let Session = connect(({token}) => {return {token};})((props) => { // grab the token field from the state.
   return (
     <div className="navbar-text">
-      Logged in as: { props.token.user_name }
+      Logged in as: { props.token.user_name } &nbsp;
+      <Button color="secondary">Log Out</Button>
     </div>
   );
 });

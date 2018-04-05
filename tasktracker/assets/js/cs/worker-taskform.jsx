@@ -23,9 +23,9 @@ class WorkerTaskForm extends React.Component {
     let data = {};
     if (target.attr('name') == "complete") {
       if ($(target).is(':checked')) {
-        data[target.attr('name')] = "true";
+        data[target.attr('name')] = true;
       } else {
-        data[target.attr('name')] = "false";
+        data[target.attr('name')] = false;
       }
     }
     else {
@@ -65,10 +65,11 @@ class WorkerTaskForm extends React.Component {
         <h3>Edit Task</h3>
         <FormGroup>
           <Label for="time">Time (minitues)</Label>
-          <Input type="number" name="time" placeholder="0, 15, 30, 45 ..." step="15" min="0" value={this.props.worker_form.time} onChange={this.update} />
+          <Input type="number" name="time" step="15" min="0" placeholder="0, 15, 30, 45 ..."
+                 value={this.props.worker_form.time} onChange={this.update} />
         </FormGroup>
         <FormGroup>
-          <Label for="complete">Complete?</Label>
+          <Label for="complete">Complete?</Label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Input type="checkbox" name="complete" value={this.props.worker_form.complete} onChange={this.update} />
         </FormGroup>
         <Button onClick={this.edit} value={task_id} color="primary">Submit Changes</Button> &nbsp;
