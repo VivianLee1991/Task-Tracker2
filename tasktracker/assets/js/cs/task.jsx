@@ -4,7 +4,6 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 
 export default function Task(params) {
   let task = params.task;
-  let user_id = params.user_id;
   return (
     <div>
       <Card>

@@ -9,7 +9,7 @@ export default function Home(params) {
   }
 
   let tasks = _.map(params.tasks, (tt) =>
-    (<Task key={tt.id} task={tt} user_id={user_id}/>));
+    (<Task key={tt.id} task={tt} />));
 
   return (
     <div>

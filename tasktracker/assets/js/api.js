@@ -48,6 +48,37 @@ class TheServer {
     });
   }
 
+  edit_task(data, task_id) {
+    $.ajax("/api/v1/tasks" + task_id, {
+      method: "put",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ task: data }),
+      success: (resp) => {
+        store.dispatch({
+          type: 'EDIT_TASK',
+          task: resp.data,
+          task_id: task_id,
+        });
+      },
+    });
+  }
+
+  delete_task(task_id) {
+    $.ajax("/api/v1/tasks" + task_id, {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: "",
+      success: (resp) => {
+        store.dispatch({
+          type: 'DELETE_TASK',
+          task_id: task_id,
+        });
+      },
+    });
+  }
+
   submit_login(data) {
     $.ajax("/api/v1/token", {
       method: "post",
@@ -83,6 +114,9 @@ class TheServer {
           store.dispatch({
             type: 'ADD_USER',
             user: resp.data,
+          });
+          store.dispatch({
+            type: 'CLEAR_REG_FORM',
           });
         },
         error: (resp) => {

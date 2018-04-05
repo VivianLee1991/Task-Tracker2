@@ -9,6 +9,7 @@ app's state {
     title: ""
     description: ""
     worker_id: ""
+    token: ""
   }
   token: {
     user_id:
@@ -28,6 +29,11 @@ app's state {
   error: {
     msg: String
   }
+  designer_form: {
+    title:
+    description:
+    worker_id:
+  }
 }
 */
 function tasks(state = [], action) {
@@ -36,6 +42,16 @@ function tasks(state = [], action) {
       return [...action.tasks];
     case 'ADD_TASK':
       return [action.task, ...state];
+    case 'EDIT_TASK':
+      return _.map(state, (tt) => {
+          if (tt.id == action.task_id) {
+            return action.task;
+          } else {
+            return tt;
+          }
+        });
+    case 'DELETE_TASK':
+      return _.filter(state, (tt) => {tt.id != action.task_id;});
     default:
       return state;
   }
@@ -56,6 +72,7 @@ let empty_form = {
   title: "",
   description: "",
   worker_id: "",
+  token: ""
 };
 
 function form(state = empty_form, action) {
@@ -66,6 +83,23 @@ function form(state = empty_form, action) {
       return empty_form;
     case 'SET_TOKEN':
       return Object.assign({}, state, action.token);
+    default:
+      return state;
+  }
+}
+
+let empty_designer_form = {
+  title: "",
+  description: "",
+  worker_id: "",
+};
+
+function designer_form(state = empty_designer_form, action) {
+  switch (action.type) {
+    case 'UPDATE_DESIGNER_FORM':
+      return Object.assign({}, state, action.data); // merge objects
+    case 'CLEAR_DESIGNER_FORM':
+      return empty_designer_form;
     default:
       return state;
   }
@@ -118,13 +152,15 @@ function register(state = empty_register, action) {
   switch (action.type) {
     case 'UPDATE_REGISTER_FORM':
       return Object.assign({}, state, action.data);
+    case 'CLEAR_REG_FORM':
+      return empty_register;
     default:
       return state;
   }
 }
 
 function root_reducer(state0, action) {
-  let reducer = combineReducers({tasks, users, form, token, login, register, error});
+  let reducer = combineReducers({tasks, users, form, token, login, register, error, designer_form});
   let state1 = reducer(state0, action);
   return deepFreeze(state1);
 }

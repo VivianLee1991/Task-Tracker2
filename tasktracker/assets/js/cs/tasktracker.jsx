@@ -9,6 +9,8 @@ import Tasks from './tasks';
 import TaskForm from './taskform';
 import Home from './home';
 import Register from './register';
+import DesignerTaskForm from './designer-taskform';
+import WorkerTaskForm from './worker-taskform';
 
 export default function tasktracker_init(store) {
   let root = document.getElementById('root');
@@ -27,18 +29,32 @@ let Tasktracker = connect((state) => state)((props) => {
     <Router>
       <div class="container">
         <Navigation />
+
         <Route path="/" exact={true} render={ () =>
           <Register />
         } />
+
         <Route path="/home" exact={true} render={ () =>
           <div>
             <TaskForm />
+            <h2>All Tasks</h2>
             <Home tasks={props.tasks} user={props.token}/>
           </div>
         } />
+
+        <Route path="/tasks" exact={true} render={ () =>
+          <div>
+            <h3>Tasks Designed</h3>
+            <DesignerTaskForm />
+            <h3>Tasks To Do</h3>
+            <WorkerTaskForm />
+          </div>
+        } />
+
         <Route path="/users" exact={true} render={ () =>
           <Users users={props.users} />
         } />
+
         <Route path="/users/:user_id" render={ ({match}) =>
           <div>
             <h2>
@@ -46,7 +62,7 @@ let Tasktracker = connect((state) => state)((props) => {
              match.params.user_id == user.id), (uu) => uu.name)}
             </h2>
             <div>
-              <h3>Tasks Assigned</h3>
+              <h3>Tasks Designed</h3>
               <Tasks tasks={_.filter( props.tasks, (task) =>
                 match.params.user_id == task.designer.id )
               } />
@@ -59,6 +75,7 @@ let Tasktracker = connect((state) => state)((props) => {
             </div>
           </div>
         } />
+
       </div>
     </Router>
   );

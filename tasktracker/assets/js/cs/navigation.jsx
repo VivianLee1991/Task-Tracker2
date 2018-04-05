@@ -67,11 +67,19 @@ function Navigation(props) {
             Register
           </NavLink>
         </NavItem>
+
         <NavItem>
           <NavLink to="/home" activeClassName="active" className="nav-link">
             Home
           </NavLink>
         </NavItem>
+
+        <NavItem>
+          <NavLink to="/tasks" activeClassName="active" className="nav-link">
+            My Tasks
+          </NavLink>
+        </NavItem>
+
         <NavItem>
           <NavLink to="/users" href="#" className="nav-link">
             All Users
