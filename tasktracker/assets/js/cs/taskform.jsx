@@ -19,7 +19,7 @@ function TaskForm(props) {
 
   function submit(ev) {
     api.submit_task(props.form);
-    console.log(props.form);
+    //console.log(props.form);
   }
 
   function clear(ev) {
@@ -35,17 +35,18 @@ function TaskForm(props) {
 
       <FormGroup>
         <Label for="title">Title</Label>
-        <Input type="textarea" name="title" value={props.form.title} onChange={update} />
+        <Input type="textarea" name="title" value={props.form.title} onChange={update} required />
       </FormGroup>
 
       <FormGroup>
         <Label for="description">Description</Label>
-        <Input type="textarea" name="description" value={props.form.description} onChange={update} />
+        <Input type="textarea" name="description" value={props.form.description} onChange={update} required/>
       </FormGroup>
 
       <FormGroup>
         <Label for="worker_id">Worker</Label>
-        <Input type="select" name="worker_id" value={props.form.worker_id} onChange={update}>
+        <Input type="select" name="worker_id" value={props.form.worker_id} onChange={update} required>
+          <option></option>
           { users }
         </Input>
       </FormGroup>

@@ -83,6 +83,8 @@ function form(state = empty_form, action) {
       return empty_form;
     case 'SET_TOKEN':
       return Object.assign({}, state, action.token);
+    case 'DELETE_TOKEN':
+      return empty_form;
     default:
       return state;
   }
@@ -125,6 +127,8 @@ function token(state = null, action) {
   switch (action.type) {
     case 'SET_TOKEN':
       return action.token;
+    case 'DELETE_TOKEN':
+      return null;
     default:
       return state;
   }
@@ -139,6 +143,8 @@ function login(state = empty_login, action) {
   switch (action.type) {
     case 'UPDATE_LOGIN_FORM':
       return Object.assign({}, state, action.data);
+    case 'DELETE_TOKEN':
+      return empty_login;
     default:
       return state;
   }

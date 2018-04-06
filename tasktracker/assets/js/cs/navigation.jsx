@@ -39,10 +39,17 @@ let LoginForm = connect(({login}) => {return {login};})((props) => { // connect:
 });
 
 let Session = connect(({token}) => {return {token};})((props) => { // grab the token field from the state.
+
+  function delete_token(ev) {
+    props.dispatch({
+      type: 'DELETE_TOKEN',
+    });
+  }
+  
   return (
     <div className="navbar-text">
       Logged in as: { props.token.user_name } &nbsp;
-      <Button color="secondary">Log Out</Button>
+      <Button color="secondary" onClick={delete_token}>Log Out</Button>
     </div>
   );
 });

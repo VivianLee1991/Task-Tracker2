@@ -56,7 +56,14 @@ class DesignerTaskForm extends React.Component {
     let task_id = this.props.task_id;
     let [task] = _.filter(this.props.tasks, (tt) => tt.id == task_id);
     let users = _.map(this.props.users, (uu) => <option key={uu.id} value={uu.id}>{uu.name}</option>);
+    const { last } = '/tasks';
     const { redirect } = this.state;
+
+    if (redirect) {
+      console.log(this.props.tasks);
+      api.request_tasks();
+      return <Redirect to={last || '/tasks'} />;
+    }
 
     return (
     <div style={{padding: "4ex"}}>
@@ -77,6 +84,7 @@ class DesignerTaskForm extends React.Component {
         <FormGroup>
           <Label for="worker_id">Worker</Label>
           <Input type="select" name="worker_id" value={this.props.designer_form.worker_id} onChange={this.update}>
+            <option></option>
             { users }
           </Input>
         </FormGroup>
@@ -84,7 +92,6 @@ class DesignerTaskForm extends React.Component {
         <Button onClick={this.delete_task} value={task_id} color="danger">Delete</Button> &nbsp;
         <Button onClick={this.clear_form}>Clear</Button>
       </div>
-      { redirect && (<Redirect to={'/tasks'} />)}
     </div>
     );
   }

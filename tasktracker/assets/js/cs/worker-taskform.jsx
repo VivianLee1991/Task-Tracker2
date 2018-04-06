@@ -54,7 +54,7 @@ class WorkerTaskForm extends React.Component {
   render() {
     let task_id = this.props.task_id;
     let [task] = _.filter(this.props.tasks, (tt) => tt.id == task_id);
-    console.log(task);
+    //console.log(task);
     return (
     <div style={{padding: "4ex"}}>
       <div>

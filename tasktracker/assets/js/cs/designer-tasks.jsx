@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function DesignerTask(params) {
-  console.log(params.task);
+  //console.log(params.task);
   return <p>{params.task.title} - <Link to={"/tasks/" + params.task.id}>Details</Link></p>;
 }
 
@@ -11,10 +11,10 @@ export default function DesignerTasks(params) {
   if (params.token) {
     current_user = params.token.user_id;
   }
-  console.log(current_user);
+  //console.log(current_user);
 
   let tasks_designed = _.filter(params.tasks, (tt) => tt.designer.id == current_user);
-  console.log(tasks_designed);
+  //console.log(tasks_designed);
   let tasks_display = _.map(tasks_designed, (tt) => <DesignerTask key={tt.id} task={tt} />);
 
   return (

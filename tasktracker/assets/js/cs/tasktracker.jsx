@@ -63,7 +63,7 @@ let Tasktracker = connect((state) => state)((props) => {
         } />
 
         <Route path="/users/:user_id" render={ ({match}) =>
-          <div>
+          <div style={{padding: "4ex"}}>
             <h2>
             {_.map(_.filter(props.users, (user) =>
              match.params.user_id == user.id), (uu) => uu.name)}
