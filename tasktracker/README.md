@@ -25,14 +25,13 @@ Deployment steps on VPS:
 
 1. git clone this project to ~/src/
 
-2. add "{:distillery, "~> 1.5", runtime: false}"
-   in tasktracker/mix.exs "defp deps do ... end"
-
-   $ mix deps.get
+2. $ mix deps.get
 
 3. $ cd assets
-   $ npm install --save bootstrap popper.js jquery
-   $ npm install --save-dev sass-brunch
+   $ npm install --save jquery bootstrap popper.js react react-dom reactstrap underscore
+   $ npm install --save-dev babel-preset-env babel-preset-react sass-brunch
+   $ npm install react-router-dom
+
 
 4. create DB user (tasktracker) on VPS, and remeber its password (pw).
    ( manually move prod.secret.exs file to tasktracker/config/)
@@ -42,8 +41,9 @@ Deployment steps on VPS:
 
 5. $ MIX_ENV=prod mix ecto.create
    $ MIX_ENV=prod mix ecto.migrate
+   $ MIX_ENV=prod mix run priv/repo/seeds.exs
 
-6. modify the project name to "tasktracker" and port number in deploy.sh
+6. modify the project name to "tasktracker" and Port number in deploy.sh
    and start.sh
 
 7. configure the tasktracker.nginx in sites-available/ and sites-enabled/;
@@ -54,6 +54,11 @@ Deployment steps on VPS:
 
 9. $ ./deploy.sh
    $ ./start.sh
+
+
+Enable HTTPS:
+
+  https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx
 
 --------------------------------------------------------------------------------
 
