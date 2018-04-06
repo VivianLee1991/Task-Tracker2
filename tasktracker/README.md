@@ -18,28 +18,6 @@ A single-page web application:
 
 Note: a worker can adjust the time in 15-minitue step by clicking the tiny buttons in the left of the time form.
 
---------------------------------------------------------------------------------
-
-Design Considerations:
-
-1. The first page is a user register / Log in, you can log in with email addr.
-
-2. When logged in, there is a feed page for the current user.
-
-3. In the feed page, current user can design a new task. The owner id is not
-   necessary when creating the new task. Current user could find any user's
-   id by clicking the "List Users".
-
-4. There are also two sections showing tasks assigned to and created by the
-   current user, respectively.
-
-5. A user could only edit the "time_spent" and "is_complete" fields of a task
-   assigned to him. He could not delete such tasks.
-
-6. A user could only edit the "title", "description", and "owner" fields of a
-   task created by himself. He could also delete such tasks.
-
-7. Only a "root" user could delete other users, except itself.
 
 --------------------------------------------------------------------------------
 
